@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #0066FF;
+  --color-primary-dark: #0052CC;
+  --color-secondary: #00D9FF;
+  --color-text: #1A1A1A;
+  --color-text-light: #666666;
+  --color-background: #FFFFFF;
+  --color-surface: #F8F9FA;
+  --color-border: #E5E7EB;
+  --color-success: #10B981;
+  --spacing-unit: 8px;
+  --max-width: 1200px;
+  --border-radius: 12px;
+}
+
+/* tu reset si quieres */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+.container {
+  max-width: 1200px;   /* o 1280 */
+  margin: 0 auto;
+  padding: 0 16px;
+}

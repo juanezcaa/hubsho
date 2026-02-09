@@ -1,152 +1,111 @@
 ---
 const testimonials = [
   {
-    quote: "Con Hubsho integrado a nuestro WMS, el flujo entre pedidos y almacén es automático. Antes teníamos que revisar cada orden manualmente; ahora, todo entra listo para surtirse.",
-    author: "Carlos Mendoza",
-    role: "Director de Operaciones",
-    company: "Distribuidora del Norte"
+    quote:
+      "Con Hubsho integrado a nuestro WMS, el flujo entre pedidos y almacén es automático. Antes teníamos que revisar cada orden manualmente; ahora, todo entra listo para surtirse. Ganamos velocidad, orden y menos errores.",
+    author: "Verónica",
+    role: "Gerente de Operaciones",
+    company: "Dinámica Ferretera",
+    avatar: "VG",
+    image: "/testimonials/veronica.jpg", // <-- agrega esta imagen en /public/testimonials/
   },
   {
-    quote: "Nuestros clientes ahora pueden hacer pedidos 24/7 desde la app. Aumentamos ventas 40% en el primer trimestre sin necesidad de contratar más personal.",
-    author: "Ana Martínez",
-    role: "Gerente General",
-    company: "Ferretería Central"
+    quote:
+      "Lo que antes era un caos en cotizaciones y llamadas, ahora entra ordenado por cliente, con su crédito, precio y ruta asignada.",
+    author: "Fernando Martínez",
+    role: "CEO",
+    company: "MexDoors",
+    avatar: "FM",
+    image: "/testimonials/fernando.jpg",
   },
   {
-    quote: "La mejor decisión fue dejar de depender de marketplaces. Ahora tenemos nuestra propia marca digital, sin comisiones y con control total sobre nuestros clientes.",
-    author: "Roberto Sánchez",
-    role: "Fundador",
-    company: "Materiales Premium"
-  }
+    quote:
+      "Con Hubsho activamos sucursales en línea sin desarrollar nada desde cero. Nuestra app se ve profesional y es 100% nuestra.",
+    author: "Gilberto Rodríguez",
+    role: "Gerente Comercial",
+    company: "Tool Center México",
+    avatar: "GR",
+    image: "/testimonials/gilberto.jpg",
+  },
 ];
 ---
 
-<section id="testimonios" class="section testimonials">
-  <div class="container">
-    <div class="testimonials-header">
-      <h2 class="section-title">
+<section id="testimonios" class="relative w-full overflow-hidden bg-slate-50 py-16 sm:py-24 lg:py-32">
+  <!-- Blur gradients -->
+  <div class="pointer-events-none absolute -top-24 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.10)_0%,transparent_70%)] blur-2xl"></div>
+  <div class="pointer-events-none absolute -bottom-40 right-[-120px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.10)_0%,transparent_70%)] blur-2xl"></div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="mx-auto mb-10 max-w-3xl text-center sm:mb-14 lg:mb-16">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
         Historias de éxito de nuestros clientes
       </h2>
-      <p class="section-subtitle">
+      <p class="mt-4 text-lg text-slate-600 sm:mt-6 sm:text-xl">
         Descubre cómo negocios como el tuyo están creciendo con Hubsho.
       </p>
     </div>
 
-    <div class="testimonials-grid">
-      {testimonials.map((testimonial, index) => (
-        <div class="testimonial-card">
-          <div class="quote-icon">
-            <svg width="40" height="32" viewBox="0 0 40 32" fill="none">
-              <path d="M0 32V17.5C0 7.625 4.5 0 13.5 0V5C8.5 5 5.5 9.125 5.5 17.5V20H13.5V32H0Z" fill="var(--color-primary)" opacity="0.1"/>
-              <path d="M21.5 32V17.5C21.5 7.625 26 0 35 0V5C30 5 27 9.125 27 17.5V20H35V32H21.5Z" fill="var(--color-primary)" opacity="0.1"/>
+    <!-- Mobile: swipe carousel | Desktop: grid -->
+    <div
+      class="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 [-ms-overflow-style:none] [scrollbar-width:none]
+             md:grid md:grid-cols-2 md:overflow-visible md:pb-0 lg:grid-cols-3 lg:gap-8"
+    >
+      <style>
+        /* Ocultar scrollbar solo para este carrusel (Astro scoped) */
+        div::-webkit-scrollbar { display: none; }
+      </style>
+
+      {testimonials.map((t) => (
+        <article
+          class="relative w-[85%] shrink-0 snap-center rounded-2xl border border-slate-200 bg-white px-7 pb-7 pt-16 shadow-sm
+                 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg
+                 md:w-auto md:shrink md:snap-none md:px-8 md:pb-8 md:pt-20"
+        >
+          <!-- Avatar image (si existe la imagen) -->
+          <div class="absolute -top-10 left-6 z-10 flex items-center gap-3 md:left-1/2 md:-translate-x-1/2 md:flex-col md:gap-2">
+            <div class="relative h-20 w-20 overflow-hidden rounded-full border-4 border-white bg-blue-600 shadow-lg">
+              {/* Imagen real */}
+              <img
+                src={t.image}
+                alt={t.author}
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Fallback iniciales (por si la imagen falla, se verá debajo si hay error de carga) */}
+            <div class="hidden h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white md:flex">
+              {t.avatar}
+            </div>
+          </div>
+
+          <!-- Quote icon -->
+          <div class="mb-4 flex justify-center md:mb-5">
+            <svg class="h-8 w-10 text-blue-600/20" viewBox="0 0 40 32" fill="currentColor" aria-hidden="true">
+              <path d="M0 32V17.5C0 7.625 4.5 0 13.5 0V5C8.5 5 5.5 9.125 5.5 17.5V20H13.5V32H0Z" />
+              <path d="M21.5 32V17.5C21.5 7.625 26 0 35 0V5C30 5 27 9.125 27 17.5V20H35V32H21.5Z" />
             </svg>
           </div>
-          <blockquote class="testimonial-quote">
-            "{testimonial.quote}"
+
+          <!-- Quote -->
+          <blockquote class="text-center text-base italic leading-relaxed text-slate-700 sm:text-lg">
+            “{t.quote}”
           </blockquote>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              {testimonial.author.charAt(0)}
-            </div>
-            <div class="author-info">
-              <div class="author-name">{testimonial.author}</div>
-              <div class="author-role">{testimonial.role}</div>
-              <div class="author-company">{testimonial.company}</div>
-            </div>
+
+          <!-- Author -->
+          <div class="mt-6 text-center">
+            <p class="text-base font-semibold text-slate-900">{t.author}</p>
+            <p class="mt-1 text-sm text-slate-600">{t.role}</p>
+            <p class="mt-1 text-sm font-medium text-blue-600">{t.company}</p>
           </div>
-        </div>
+        </article>
       ))}
     </div>
+
+    <!-- Hint de swipe (solo mobile) -->
+    <p class="mt-4 text-center text-sm text-slate-500 md:hidden">
+      Desliza para ver más testimonios →
+    </p>
   </div>
 </section>
-
-<style>
-  .testimonials {
-    background: white;
-  }
-
-  .testimonials-header {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto calc(var(--spacing-unit) * 8);
-  }
-
-  .testimonials-header .section-subtitle {
-    margin: 0 auto;
-  }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: calc(var(--spacing-unit) * 4);
-  }
-
-  .testimonial-card {
-    background: var(--color-surface);
-    padding: calc(var(--spacing-unit) * 4);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--color-border);
-    position: relative;
-    transition: all 0.3s ease;
-  }
-
-  .testimonial-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  }
-
-  .quote-icon {
-    margin-bottom: calc(var(--spacing-unit) * 2);
-  }
-
-  .testimonial-quote {
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    color: var(--color-text);
-    margin-bottom: calc(var(--spacing-unit) * 3);
-    font-style: italic;
-  }
-
-  .testimonial-author {
-    display: flex;
-    gap: calc(var(--spacing-unit) * 2);
-    align-items: center;
-  }
-
-  .author-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 1.25rem;
-    flex-shrink: 0;
-  }
-
-  .author-name {
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 2px;
-  }
-
-  .author-role {
-    font-size: 0.875rem;
-    color: var(--color-text-light);
-  }
-
-  .author-company {
-    font-size: 0.875rem;
-    color: var(--color-primary);
-    font-weight: 500;
-  }
-
-  @media (max-width: 768px) {
-    .testimonials-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
