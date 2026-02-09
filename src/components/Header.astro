@@ -1,0 +1,153 @@
+---
+---
+
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
+          <path d="M10 10h12v4h-8v2h6v4h-6v2h8v4H10V10z" fill="white"/>
+        </svg>
+        <span>Hubsho</span>
+      </a>
+      
+      <div class="nav-links">
+        <a href="#caracteristicas">Características</a>
+        <a href="#soluciones">Soluciones</a>
+        <a href="#planes">Planes</a>
+        <a href="#testimonios">Testimonios</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="#contacto" class="btn-secondary">Contacto</a>
+        <a href="#demo" class="btn-primary">Solicitar demo</a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    z-index: 1000;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    gap: calc(var(--spacing-unit) * 4);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1.5);
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+  }
+
+  .logo:hover {
+    opacity: 0.8;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 4);
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-actions {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    color: var(--color-text);
+    background: transparent;
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-surface);
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: calc(var(--spacing-unit) * 1);
+  }
+
+  .menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links,
+    .nav-actions {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+  }
+</style>

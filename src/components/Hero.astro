@@ -1,0 +1,279 @@
+---
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Tu canal de ventas digital propio, bajo tu control y marca
+        </h1>
+        <p class="hero-subtitle">
+          Tienda en línea + app móvil personalizada para que vendas más sin intermediarios. 
+          Todo con tu imagen corporativa y sin comisiones por venta.
+        </p>
+        <div class="hero-actions">
+          <a href="#demo" class="btn-hero-primary">
+            <span>Solicitar demo gratuita</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#caracteristicas" class="btn-hero-secondary">
+            Ver características
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-value">500+</div>
+            <div class="stat-label">Negocios activos</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">99.9%</div>
+            <div class="stat-label">Uptime garantizado</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Soporte técnico</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-visual">
+        <div class="mockup-container">
+          <div class="mockup mockup-web">
+            <div class="mockup-header">
+              <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <div class="mockup-content"></div>
+          </div>
+          <div class="mockup mockup-mobile">
+            <div class="mockup-notch"></div>
+            <div class="mockup-content-mobile"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    margin-top: 80px;
+    background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+    padding: calc(var(--spacing-unit) * 15) 0 calc(var(--spacing-unit) * 12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 102, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--spacing-unit) * 8);
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-light);
+    margin-bottom: calc(var(--spacing-unit) * 5);
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+    margin-bottom: calc(var(--spacing-unit) * 6);
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1);
+  }
+
+  .btn-hero-primary {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 102, 255, 0.25);
+  }
+
+  .btn-hero-primary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 102, 255, 0.35);
+  }
+
+  .btn-hero-secondary {
+    background: white;
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
+  }
+
+  .btn-hero-secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--spacing-unit) * 4);
+    padding-top: calc(var(--spacing-unit) * 4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+  }
+
+  .mockup-container {
+    position: relative;
+    height: 500px;
+  }
+
+  .mockup {
+    position: absolute;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    background: white;
+    overflow: hidden;
+  }
+
+  .mockup-web {
+    width: 100%;
+    height: 350px;
+    top: 0;
+    left: 0;
+  }
+
+  .mockup-header {
+    background: #F3F4F6;
+    padding: calc(var(--spacing-unit) * 2);
+    display: flex;
+    align-items: center;
+  }
+
+  .dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #D1D5DB;
+  }
+
+  .mockup-content {
+    height: calc(100% - 48px);
+    background: linear-gradient(135deg, #E0E7FF 0%, #F3F4F6 100%);
+  }
+
+  .mockup-mobile {
+    width: 180px;
+    height: 360px;
+    bottom: 0;
+    right: 60px;
+    border: 8px solid #1F2937;
+    z-index: 2;
+  }
+
+  .mockup-notch {
+    width: 100px;
+    height: 24px;
+    background: #1F2937;
+    margin: 0 auto;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .mockup-content-mobile {
+    height: calc(100% - 24px);
+    background: linear-gradient(135deg, #DBEAFE 0%, #F3F4F6 100%);
+  }
+
+  @media (max-width: 968px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-visual {
+      display: none;
+    }
+
+    .hero-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .btn-hero-primary,
+    .btn-hero-secondary {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .hero-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

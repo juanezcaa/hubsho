@@ -1,0 +1,150 @@
+---
+const solutions = [
+  {
+    title: "Distribuidores & Mayoristas",
+    description: "Gestiona catálogos extensos, precios por volumen y canales exclusivos para clientes frecuentes. Ideal para operaciones B2B.",
+    benefits: [
+      "Precios diferenciados por cliente",
+      "Pedidos por volumen",
+      "Catálogo de miles de productos",
+      "Portal exclusivo para clientes"
+    ]
+  },
+  {
+    title: "Ferreterías & Materiales",
+    description: "Digitaliza tu punto de venta manteniendo el control total. Inventario sincronizado y gestión de pedidos en tiempo real.",
+    benefits: [
+      "Sincronización con punto de venta",
+      "Inventario en tiempo real",
+      "Gestión de variantes y SKUs",
+      "Integración con proveedores"
+    ]
+  },
+  {
+    title: "Retail & Comercio",
+    description: "Lanza tu ecommerce con tu propia marca sin depender de marketplaces. Control total de la experiencia del cliente.",
+    benefits: [
+      "Diseño 100% personalizable",
+      "Sin comisiones por venta",
+      "App móvil con tu marca",
+      "Promociones y descuentos"
+    ]
+  },
+  {
+    title: "Emprendedores",
+    description: "Empieza a vender en línea desde el primer día con una tienda 100% operativa. No necesitas ser técnico.",
+    benefits: [
+      "Setup rápido y guiado",
+      "Soporte técnico incluido",
+      "Sin costos ocultos",
+      "Escalable conforme creces"
+    ]
+  }
+];
+---
+
+<section id="soluciones" class="section solutions">
+  <div class="container">
+    <div class="solutions-header">
+      <h2 class="section-title">
+        Soluciones adaptadas a tu industria
+      </h2>
+      <p class="section-subtitle">
+        No importa tu giro, tenemos la configuración perfecta para que vendas más.
+      </p>
+    </div>
+
+    <div class="solutions-grid">
+      {solutions.map(solution => (
+        <div class="solution-card">
+          <h3 class="solution-title">{solution.title}</h3>
+          <p class="solution-description">{solution.description}</p>
+          <ul class="solution-benefits">
+            {solution.benefits.map(benefit => (
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="10" fill="var(--color-primary)" opacity="0.1"/>
+                  <path d="M6 10L9 13L14 7" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .solutions {
+    background: var(--color-surface);
+  }
+
+  .solutions-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto calc(var(--spacing-unit) * 8);
+  }
+
+  .solutions-header .section-subtitle {
+    margin: 0 auto;
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: calc(var(--spacing-unit) * 3);
+  }
+
+  .solution-card {
+    background: white;
+    padding: calc(var(--spacing-unit) * 4);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+  }
+
+  .solution-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .solution-title {
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    color: var(--color-text);
+  }
+
+  .solution-description {
+    color: var(--color-text-light);
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    line-height: 1.7;
+  }
+
+  .solution-benefits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 1.5);
+  }
+
+  .solution-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: calc(var(--spacing-unit) * 1.5);
+    font-size: 0.9375rem;
+  }
+
+  .solution-benefits svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .solutions-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

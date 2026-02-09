@@ -1,0 +1,344 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerSections = {
+  producto: {
+    title: "Producto",
+    links: [
+      { text: "Características", href: "#caracteristicas" },
+      { text: "Planes y precios", href: "#planes" },
+      { text: "Integraciones", href: "#integraciones" },
+      { text: "API Documentation", href: "#api" },
+      { text: "Actualizaciones", href: "#changelog" },
+      { text: "Roadmap", href: "#roadmap" }
+    ]
+  },
+  soluciones: {
+    title: "Soluciones",
+    links: [
+      { text: "Distribuidores", href: "#distribuidores" },
+      { text: "Ferreterías", href: "#ferreterias" },
+      { text: "Retail", href: "#retail" },
+      { text: "Emprendedores", href: "#emprendedores" },
+      { text: "Casos de éxito", href: "#casos" },
+      { text: "Por industria", href: "#industrias" }
+    ]
+  },
+  recursos: {
+    title: "Recursos",
+    links: [
+      { text: "Blog", href: "#blog" },
+      { text: "Guías", href: "#guias" },
+      { text: "Videos tutoriales", href: "#videos" },
+      { text: "Centro de ayuda", href: "#ayuda" },
+      { text: "Base de conocimiento", href: "#kb" },
+      { text: "Webinars", href: "#webinars" }
+    ]
+  },
+  empresa: {
+    title: "Empresa",
+    links: [
+      { text: "Nosotros", href: "#nosotros" },
+      { text: "Contacto", href: "#contacto" },
+      { text: "Trabaja con nosotros", href: "#carreras" },
+      { text: "Partners", href: "#partners" },
+      { text: "Prensa", href: "#prensa" },
+      { text: "Afiliados", href: "#afiliados" }
+    ]
+  },
+  legal: {
+    title: "Legal",
+    links: [
+      { text: "Términos y condiciones", href: "#terminos" },
+      { text: "Política de privacidad", href: "#privacidad" },
+      { text: "Política de cookies", href: "#cookies" },
+      { text: "GDPR", href: "#gdpr" },
+      { text: "SLA", href: "#sla" },
+      { text: "Facturación", href: "#facturacion" }
+    ]
+  },
+  soporte: {
+    title: "Soporte",
+    links: [
+      { text: "Centro de soporte", href: "#soporte" },
+      { text: "Estado del sistema", href: "#status" },
+      { text: "Reportar bug", href: "#bugs" },
+      { text: "Sugerencias", href: "#sugerencias" },
+      { text: "Chat en vivo", href: "#chat" },
+      { text: "Horarios", href: "#horarios" }
+    ]
+  }
+};
+---
+
+<footer class="footer">
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand section -->
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">
+            <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
+              <path d="M10 10h12v4h-8v2h6v4h-6v2h8v4H10V10z" fill="white"/>
+            </svg>
+            <span>Hubsho</span>
+          </a>
+          <p class="footer-description">
+            La plataforma completa para que tu negocio venda en línea con su propia marca. 
+            Sin intermediarios, sin comisiones.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook" class="social-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Twitter" class="social-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="social-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="social-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="YouTube" class="social-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="white"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer sections -->
+        {Object.entries(footerSections).map(([key, section]) => (
+          <div class="footer-section">
+            <h3 class="footer-section-title">{section.title}</h3>
+            <ul class="footer-links">
+              {section.links.map(link => (
+                <li>
+                  <a href={link.href}>{link.text}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-content">
+        <div class="footer-copyright">
+          © {currentYear} Hubsho. Todos los derechos reservados.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="#terminos">Términos</a>
+          <span class="separator">•</span>
+          <a href="#privacidad">Privacidad</a>
+          <span class="separator">•</span>
+          <a href="#cookies">Cookies</a>
+        </div>
+        <div class="footer-badges">
+          <span class="badge">🔒 SSL Seguro</span>
+          <span class="badge">🇲🇽 Hecho en México</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-text);
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .footer-main {
+    padding: calc(var(--spacing-unit) * 10) 0 calc(var(--spacing-unit) * 6);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: calc(var(--spacing-unit) * 6);
+  }
+
+  .footer-brand {
+    grid-column: 1;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1.5);
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: calc(var(--spacing-unit) * 3);
+  }
+
+  .footer-description {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin-bottom: calc(var(--spacing-unit) * 4);
+    opacity: 0.8;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.2s ease;
+  }
+
+  .social-link:hover {
+    background: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .footer-section {
+    min-width: 0;
+  }
+
+  .footer-section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 1.25);
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: white;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: calc(var(--spacing-unit) * 4) 0;
+  }
+
+  .footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 3);
+  }
+
+  .footer-copyright {
+    font-size: 0.875rem;
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 2);
+    font-size: 0.875rem;
+  }
+
+  .footer-bottom-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-bottom-links a:hover {
+    color: white;
+  }
+
+  .separator {
+    opacity: 0.3;
+  }
+
+  .footer-badges {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1200px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .footer-section:nth-child(n+5) {
+      grid-column: 2;
+    }
+
+    .footer-section:nth-child(n+6) {
+      grid-column: 3;
+    }
+  }
+
+  @media (max-width: 968px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+      margin-bottom: calc(var(--spacing-unit) * 4);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-badges {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>
