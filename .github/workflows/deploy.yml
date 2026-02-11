@@ -1,0 +1,35 @@
+name: Build and Deploy (Static)
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Publish dist to deploy branch
+        run: |
+          git fetch origin deploy || true
+          git worktree add .deploy deploy || git worktree add .deploy -b deploy
+          rm -rf .deploy/*
+          cp -R dist/* .deploy/
+          cd .deploy
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "Deploy: $GITHUB_SHA" || echo "No changes"
+          git push origin deploy
