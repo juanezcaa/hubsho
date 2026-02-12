@@ -2,15 +2,27 @@
 import BusinessCard from '../components/BusinessCard.astro';
 ---
 
-<BusinessCard
-  nombre="Juan Escamilla"
-  puesto="CEO & Fundador"
-  empresa="Hubsho"
-  foto="/team/juan_1.jpg"
-  telefono="+52 8180107329"
-  email="juanes@hubsho.com"
-  linkedin="https://linkedin.com/in/juanezcaa"
-  whatsapp="8180107329"
 
-  colorPrimario="blue"
-/>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan Escamilla - Hubsho</title>
+</head>
+<body class="bg-gray-50 md:flex md:items-center md:justify-center md:min-h-screen">
+  <BusinessCard
+    nombre="Juan Escamilla"
+    puesto="CEO & Fundador"
+    empresa="Hubsho"
+    foto="/team/juan_1.jpg"
+    logo="/logo.svg"
+    telefono="+52 818 010 7329"
+    email="juanes@hubsho.com"
+    sitioWeb="https://hubsho.com"
+    linkedin="https://linkedin.com/in/juanezcaa"
+    whatsapp="8180107329"
+    colorPrimario="blue"
+  />
+</body>
+</html>
