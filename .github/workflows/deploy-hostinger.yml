@@ -27,23 +27,22 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Write deploy marker
+      - name: Write deploy marker (SVG)
         run: |
-          cat > dist/deploy.svg << 'EOF'
-          <svg xmlns="http://www.w3.org/2000/svg" width="800" height="120">
+          NOW="$(date -u)"
+          SHA="${GITHUB_SHA}"
+          cat > dist/deploy.svg << EOF
+          <svg xmlns="http://www.w3.org/2000/svg" width="900" height="120">
             <rect width="100%" height="100%" fill="#111827"/>
             <text x="24" y="52" fill="#ffffff" font-size="22" font-family="Arial, sans-serif">
-              sha=${GITHUB_SHA}
+              sha=$SHA
             </text>
             <text x="24" y="92" fill="#9CA3AF" font-size="18" font-family="Arial, sans-serif">
-EOF
-          date -u >> dist/deploy.svg
-          cat >> dist/deploy.svg << 'EOF'
+              $NOW
             </text>
           </svg>
           EOF
           ls -la dist | head -n 50
-
 
       - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -54,5 +53,5 @@ EOF
           protocol: ftp
           port: 21
           local-dir: dist/
-          server-dir: public_html/site/
+          server-dir: public_html/
           dangerous-clean-slate: true
