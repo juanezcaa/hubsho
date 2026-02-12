@@ -29,10 +29,21 @@ jobs:
 
       - name: Write deploy marker
         run: |
-          echo "sha=${GITHUB_SHA}" > dist/deploy.txt
-          date >> dist/deploy.txt
-          echo "--- dist preview ---"
+          cat > dist/deploy.svg << 'EOF'
+          <svg xmlns="http://www.w3.org/2000/svg" width="800" height="120">
+            <rect width="100%" height="100%" fill="#111827"/>
+            <text x="24" y="52" fill="#ffffff" font-size="22" font-family="Arial, sans-serif">
+              sha=${GITHUB_SHA}
+            </text>
+            <text x="24" y="92" fill="#9CA3AF" font-size="18" font-family="Arial, sans-serif">
+EOF
+          date -u >> dist/deploy.svg
+          cat >> dist/deploy.svg << 'EOF'
+            </text>
+          </svg>
+          EOF
           ls -la dist | head -n 50
+
 
       - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
