@@ -27,6 +27,13 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Write deploy marker
+        run: |
+          echo "sha=${GITHUB_SHA}" > dist/deploy.txt
+          date >> dist/deploy.txt
+          echo "--- dist preview ---"
+          ls -la dist | head -n 50
+
       - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -38,14 +45,3 @@ jobs:
           local-dir: dist/
           server-dir: public_html/site/
           dangerous-clean-slate: true
-
-      - name: Build
-        run: npm run build
-
-      - name: Write deploy marker
-        run: |
-          echo "sha=${GITHUB_SHA}" > dist/deploy.txt
-          date >> dist/deploy.txt
-          ls -la dist | head -n 50
-
-
