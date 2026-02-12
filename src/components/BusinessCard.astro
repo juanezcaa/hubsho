@@ -1,5 +1,7 @@
 ---
-// BusinessCard-Mobile.astro - Versión 100% funcional para móvil
+// BusinessCard-Animated.astro - Versión con animaciones premium
+// Incluye: Skeleton loading, shimmer effect, micro-interacciones
+
 interface Props {
   nombre: string;
   puesto: string;
@@ -63,36 +65,58 @@ const vcardDownloadUrl = `data:text/vcard;charset=utf-8,${encodeURIComponent(vca
 const downloadFileName = `${nombre.replace(/\s+/g, '_')}.vcf`;
 ---
 
-<div class={`bg-gradient-to-br from-${colorPrimario}-50 to-white p-6 md:p-8 w-full md:max-w-md md:mx-auto md:rounded-3xl md:shadow-2xl md:border-2 md:border-${colorPrimario}-100`}>
+<!-- Skeleton Loading (se muestra por 800ms) -->
+<div id="skeleton" class="skeleton-card bg-white p-6 md:p-8 w-full md:max-w-md md:mx-auto md:rounded-3xl md:shadow-2xl">
+  <div class="flex justify-center mb-6">
+    <div class="w-32 h-32 rounded-full bg-gray-200 skeleton-shimmer"></div>
+  </div>
+  <div class="text-center mb-6 space-y-3">
+    <div class="h-8 bg-gray-200 rounded-lg w-48 mx-auto skeleton-shimmer"></div>
+    <div class="h-6 bg-gray-200 rounded-lg w-36 mx-auto skeleton-shimmer"></div>
+    <div class="h-5 bg-gray-200 rounded-lg w-28 mx-auto skeleton-shimmer"></div>
+  </div>
+  <div class="space-y-3 mb-6">
+    <div class="h-5 bg-gray-200 rounded-lg w-full skeleton-shimmer"></div>
+    <div class="h-5 bg-gray-200 rounded-lg w-full skeleton-shimmer"></div>
+  </div>
+  <div class="flex justify-center gap-3 mb-6">
+    <div class="w-12 h-12 rounded-full bg-gray-200 skeleton-shimmer"></div>
+    <div class="w-12 h-12 rounded-full bg-gray-200 skeleton-shimmer"></div>
+  </div>
+  <div class="h-12 bg-gray-200 rounded-xl skeleton-shimmer"></div>
+</div>
+
+<!-- Tarjeta Real (hidden inicialmente) -->
+<div id="card" class={`hidden card-entrance bg-gradient-to-br from-${colorPrimario}-50 to-white p-6 md:p-8 w-full md:max-w-md md:mx-auto md:rounded-3xl md:shadow-2xl md:border-2 md:border-${colorPrimario}-100`}>
   
   <!-- Logo -->
   {logo && (
-    <div class="flex justify-center mb-6">
-      <img src={logo} alt={empresa} class="h-12" />
+    <div class="flex justify-center mb-6 fade-in-item" style="animation-delay: 0.1s">
+      <img src={logo} alt={empresa} class="h-12 hover-lift" />
     </div>
   )}
   
   <!-- Foto / Iniciales / Emoji -->
-  <div class="flex justify-center mb-6">
+  <div class="flex justify-center mb-6 scale-in-item" style="animation-delay: 0.2s">
     {usarIniciales ? (
-      <div class={`w-32 h-32 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-${colorPrimario}-500 to-${colorPrimario}-700 flex items-center justify-center shadow-lg border-4 border-white`}>
+      <div class={`w-32 h-32 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-${colorPrimario}-500 to-${colorPrimario}-700 flex items-center justify-center shadow-lg border-4 border-white hover-rotate`}>
         <span class="text-5xl font-bold text-white">{iniciales}</span>
       </div>
     ) : foto.startsWith('http') || foto.startsWith('/') ? (
       <img 
         src={foto} 
         alt={nombre}
-        class={`w-32 h-32 md:w-36 md:h-36 rounded-full object-cover border-4 border-${colorPrimario}-500 shadow-lg`}
+        class={`w-32 h-32 md:w-36 md:h-36 rounded-full object-cover border-4 border-${colorPrimario}-500 shadow-lg hover-lift`}
       />
     ) : (
-      <div class={`w-32 h-32 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-${colorPrimario}-500 to-${colorPrimario}-700 flex items-center justify-center text-6xl shadow-lg border-4 border-white`}>
+      <div class={`w-32 h-32 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-${colorPrimario}-500 to-${colorPrimario}-700 flex items-center justify-center text-6xl shadow-lg border-4 border-white hover-bounce`}>
         {foto}
       </div>
     )}
   </div>
 
   <!-- Info -->
-  <div class="text-center mb-6">
+  <div class="text-center mb-6 fade-in-item" style="animation-delay: 0.3s">
     <h2 class={`text-2xl md:text-3xl font-bold text-${colorSecundario}-900 mb-2`}>
       {nombre}
     </h2>
@@ -105,11 +129,11 @@ const downloadFileName = `${nombre.replace(/\s+/g, '_')}.vcf`;
   </div>
 
   <!-- Contacto -->
-  <div class="space-y-3 mb-6">
+  <div class="space-y-3 mb-6 fade-in-item" style="animation-delay: 0.4s">
     {telefono && (
       <a 
         href={`tel:${telefono}`}
-        class={`flex items-center justify-center gap-3 text-${colorSecundario}-700 hover:text-${colorPrimario}-600 transition-colors text-base`}
+        class={`flex items-center justify-center gap-3 text-${colorSecundario}-700 hover:text-${colorPrimario}-600 transition-all text-base hover-slide-right`}
       >
         <div class="w-5 h-5 flex-shrink-0">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -123,7 +147,7 @@ const downloadFileName = `${nombre.replace(/\s+/g, '_')}.vcf`;
     {email && (
       <a 
         href={`mailto:${email}`}
-        class={`flex items-center justify-center gap-3 text-${colorSecundario}-700 hover:text-${colorPrimario}-600 transition-colors text-base`}
+        class={`flex items-center justify-center gap-3 text-${colorSecundario}-700 hover:text-${colorPrimario}-600 transition-all text-base hover-slide-right`}
       >
         <div class="w-5 h-5 flex-shrink-0">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -140,7 +164,7 @@ const downloadFileName = `${nombre.replace(/\s+/g, '_')}.vcf`;
         href={sitioWeb}
         target="_blank"
         rel="noopener noreferrer"
-        class={`flex items-center justify-center gap-3 text-${colorSecundario}-700 hover:text-${colorPrimario}-600 transition-colors text-base`}
+        class={`flex items-center justify-center gap-3 text-${colorSecundario}-700 hover:text-${colorPrimario}-600 transition-all text-base hover-slide-right`}
       >
         <div class="w-5 h-5 flex-shrink-0">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -154,31 +178,17 @@ const downloadFileName = `${nombre.replace(/\s+/g, '_')}.vcf`;
 
   <!-- Redes -->
   {(linkedin || twitter || facebook || instagram || whatsapp) && (
-    <div class={`flex flex-wrap justify-center gap-3 mb-6 pt-6 border-t border-${colorPrimario}-100`}>
+    <div class={`flex flex-wrap justify-center gap-3 mb-6 pt-6 border-t border-${colorPrimario}-100 fade-in-item`} style="animation-delay: 0.5s">
       {linkedin && (
         <a 
           href={linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          class={`w-12 h-12 rounded-full bg-${colorPrimario}-100 flex items-center justify-center text-${colorPrimario}-600 hover:bg-${colorPrimario}-600 hover:text-white transition-all hover:scale-110 flex-shrink-0`}
+          class={`w-12 h-12 rounded-full bg-${colorPrimario}-100 flex items-center justify-center text-${colorPrimario}-600 hover:bg-${colorPrimario}-600 hover:text-white transition-all hover-bounce-gentle flex-shrink-0`}
           title="LinkedIn"
         >
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-          </svg>
-        </a>
-      )}
-      
-      {twitter && (
-        <a 
-          href={twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={`w-12 h-12 rounded-full bg-${colorPrimario}-100 flex items-center justify-center text-${colorPrimario}-600 hover:bg-${colorPrimario}-600 hover:text-white transition-all hover:scale-110 flex-shrink-0`}
-          title="Twitter/X"
-        >
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
           </svg>
         </a>
       )}
@@ -188,7 +198,7 @@ const downloadFileName = `${nombre.replace(/\s+/g, '_')}.vcf`;
           href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 hover:bg-green-600 hover:text-white transition-all hover:scale-110 flex-shrink-0"
+          class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 hover:bg-green-600 hover:text-white transition-all hover-bounce-gentle flex-shrink-0"
           title="WhatsApp"
         >
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -196,43 +206,15 @@ const downloadFileName = `${nombre.replace(/\s+/g, '_')}.vcf`;
           </svg>
         </a>
       )}
-      
-      {instagram && (
-        <a 
-          href={instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white transition-all hover:scale-110 flex-shrink-0"
-          title="Instagram"
-        >
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
-      )}
-
-      {facebook && (
-        <a 
-          href={facebook}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 hover:bg-blue-700 hover:text-white transition-all hover:scale-110 flex-shrink-0"
-          title="Facebook"
-        >
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-        </a>
-      )}
     </div>
   )}
 
   <!-- Botones -->
-  <div class="flex gap-3">
+  <div class="flex gap-3 fade-in-item" style="animation-delay: 0.6s">
     <a 
       href={vcardDownloadUrl}
       download={downloadFileName}
-      class={`flex-1 bg-${colorPrimario}-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-${colorPrimario}-700 transition-all flex items-center justify-center gap-2 shadow-lg text-base`}
+      class={`flex-1 bg-${colorPrimario}-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-${colorPrimario}-700 transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-base`}
     >
       <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -243,53 +225,201 @@ const downloadFileName = `${nombre.replace(/\s+/g, '_')}.vcf`;
     
     <button 
       id="share-btn"
-      class={`bg-${colorSecundario}-100 text-${colorSecundario}-700 px-6 py-4 rounded-xl font-semibold hover:bg-${colorSecundario}-200 transition-all flex items-center justify-center gap-2 flex-shrink-0`}
+      class={`bg-${colorSecundario}-100 text-${colorSecundario}-700 px-6 py-4 rounded-xl font-semibold hover:bg-${colorSecundario}-200 transition-all flex items-center justify-center gap-2 flex-shrink-0 hover:scale-105`}
       title="Compartir"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
       </svg>
     </button>
-
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', function() {
-        const shareBtn = document.getElementById('share-btn');
-        const nombre = document.querySelector('h2').textContent;
-        
-        if (shareBtn) {
-          shareBtn.addEventListener('click', async function() {
-            // Si el navegador soporta Web Share API (móviles)
-            if (navigator.share) {
-              try {
-                await navigator.share({
-                  title: nombre,
-                  text: 'Mira mi tarjeta de contacto',
-                  url: window.location.href
-                });
-              } catch (err) {
-                // Usuario canceló el share
-                if (err.name !== 'AbortError') {
-                  copiarLink();
-                }
-              }
-            } else {
-              // Desktop: copiar al portapapeles
-              copiarLink();
-            }
-          });
-        }
-        
-        function copiarLink() {
-          navigator.clipboard.writeText(window.location.href).then(function() {
-            alert('¡Link copiado al portapapeles!');
-          }).catch(function() {
-            // Fallback si clipboard no funciona
-            prompt('Copia este link:', window.location.href);
-          });
-        }
-      });
-    </script>
   </div>
 </div>
 
+<style>
+  /* ========================================
+     SKELETON LOADING
+     ======================================== */
+  .skeleton-card {
+    animation: fade-in 0.3s ease-out;
+  }
 
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      #f0f0f0 0%,
+      #e0e0e0 20%,
+      #f0f0f0 40%,
+      #f0f0f0 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+  }
+
+  /* ========================================
+     ENTRANCE ANIMATIONS
+     ======================================== */
+  @keyframes card-entrance {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .card-entrance {
+    animation: card-entrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes scale-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.7) rotate(-5deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  .scale-in-item {
+    animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-item {
+    animation: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  /* ========================================
+     HOVER EFFECTS
+     ======================================== */
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px) scale(1.05);
+  }
+
+  .hover-rotate {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-rotate:hover {
+    transform: rotate(360deg);
+  }
+
+  .hover-bounce {
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .hover-bounce:hover {
+    animation: bounce-gentle 0.5s ease-in-out;
+  }
+
+  @keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .hover-bounce-gentle {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-bounce-gentle:hover {
+    transform: scale(1.1) translateY(-2px);
+  }
+
+  .hover-slide-right {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-slide-right:hover {
+    transform: translateX(5px);
+  }
+
+  /* ========================================
+     UTILITIES
+     ======================================== */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
+
+<script is:inline>
+  // Mostrar tarjeta real después del skeleton
+  setTimeout(function() {
+    const skeleton = document.getElementById('skeleton');
+    const card = document.getElementById('card');
+    
+    if (skeleton && card) {
+      skeleton.style.display = 'none';
+      card.classList.remove('hidden');
+    }
+  }, 800);
+
+  // Botón compartir
+  document.addEventListener('DOMContentLoaded', function() {
+    const shareBtn = document.getElementById('share-btn');
+    const nombre = document.querySelector('h2')?.textContent || 'Tarjeta de contacto';
+    
+    if (shareBtn) {
+      shareBtn.addEventListener('click', async function() {
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: nombre,
+              text: 'Mira mi tarjeta de contacto',
+              url: window.location.href
+            });
+          } catch (err) {
+            if (err.name !== 'AbortError') {
+              copiarLink();
+            }
+          }
+        } else {
+          copiarLink();
+        }
+      });
+    }
+    
+    function copiarLink() {
+      navigator.clipboard.writeText(window.location.href).then(function() {
+        // Feedback visual
+        const btn = document.getElementById('share-btn');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+        setTimeout(function() {
+          btn.innerHTML = originalHTML;
+        }, 2000);
+      }).catch(function() {
+        prompt('Copia este link:', window.location.href);
+      });
+    }
+  });
+</script>
