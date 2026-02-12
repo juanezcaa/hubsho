@@ -51,7 +51,7 @@ jobs:
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASS }}
           protocol: ftp
-          port: 21
+          port: 22
           local-dir: dist/
           server-dir: /
           dangerous-clean-slate: true
