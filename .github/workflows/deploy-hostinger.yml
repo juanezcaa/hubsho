@@ -27,14 +27,15 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy dist/ to Hostinger via SFTP
-        uses: appleboy/scp-action@v0.1.7
+      - name: Deploy to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USER }}
-          password: ${{ secrets.SFTP_PASS }}
-          port: ${{ secrets.SFTP_PORT }}
-          source: "dist/*"
-          target: ${{ secrets.SFTP_REMOTE_PATH }}
-          strip_components: 1
-          overwrite: true
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: dist/
+          server-dir: public_html/site/
+          dangerous-clean-slate: true
+
