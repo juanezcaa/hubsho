@@ -39,3 +39,13 @@ jobs:
           server-dir: public_html/site/
           dangerous-clean-slate: true
 
+      - name: Build
+        run: npm run build
+
+      - name: Write deploy marker
+        run: |
+          echo "sha=${GITHUB_SHA}" > dist/deploy.txt
+          date >> dist/deploy.txt
+          ls -la dist | head -n 50
+
+
